@@ -8,7 +8,7 @@
 */
 
 public final class Token {
-    // Tokens (?)
+    // Tokens
     public static final int SEMI   = 0;  // ;
     public static final int PLUS   = 1;  // +
     public static final int MINUS  = 2;  // -
@@ -20,9 +20,9 @@ public final class Token {
     public static final int RPAREN = 8;  // )
     public static final int NUMBER = 9;  // number
     public static final int ERROR  = 10; // error
-    public static final int UNARY  = 11;  // ~ menos unario
+    public static final int UNARY  = 11; // ~ menos unario
 
-    // Esto puede ser bastante util
+    // Representación de cada token en texto
     private static final String[] tokens = {
         ";",
         "+",
@@ -41,38 +41,36 @@ public final class Token {
     private int id;
     private String val;
 
-    // Constructor de la clase
+    // Constructor para tokens con valor (como NUMBER)
     public Token(int id, String val) {
         this.id = id;
         this.val = val;
     }
 
-    // Constructor para tokens sin val
+    // Constructor para tokens sin valor
     public Token(int id) {
         this(id, null);
     }
 
-    // Para tener el valor de un number
+    // Obtener valor numérico (si es un NUMBER)
     public double getVal() {
         return Double.parseDouble(this.val);
     }
 
-    // Para tener el id de un token
+    // Obtener el ID del token
     public int getId() {
         return this.id;
     }
 
-    // Para comparar, esto es muy util
+    // Comparar token con un ID
     public boolean equals(int id) {
         return this.id == id;
     }
 
-    // Para representar un Token en String
+    // Mostrar el token como String
     public String toString() {
-        if(this.id == Token.NUMBER) {
-            if (this.val != null) {
-                return Token.tokens[this.id] + " : " + this.val;
-            }
+        if(this.id == Token.NUMBER && this.val != null) {
+            return Token.tokens[this.id] + " : " + this.val;
         }
         return Token.tokens[this.id];
     }
