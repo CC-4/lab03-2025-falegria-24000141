@@ -88,12 +88,11 @@ MINUS  = "-"
 MULT   = "\\*"
 DIV    = "/"
 MOD    = "%"
-POW    = "\\^"
+EXP    = "\\^"
 LPAREN = "\\("
 RPAREN = "\\)"
-WHITE  = (" "|\t|\n)
+WHITE = (" "|\t|\n)
 
-// Número con punto decimal opcional y exponente opcional
 EXP    = [eE][+-]?[0-9]+
 NUM    = [0-9]+(\\.[0-9]*)?({EXP})?
 
@@ -105,12 +104,12 @@ NUM    = [0-9]+(\\.[0-9]*)?({EXP})?
 <YYINITIAL>{MULT}    { return new Token(Token.MULT);    }
 <YYINITIAL>{DIV}     { return new Token(Token.DIV);     }
 <YYINITIAL>{MOD}     { return new Token(Token.MOD);     }
-<YYINITIAL>{POW}     { return new Token(Token.POW);     }
+<YYINITIAL>{POW}     { return new Token(Token.EXP);     }
 <YYINITIAL>{LPAREN}  { return new Token(Token.LPAREN);  }
 <YYINITIAL>{RPAREN}  { return new Token(Token.RPAREN);  }
 
 <YYINITIAL>{NUM}     { return new Token(Token.NUMBER, yytext()); }
 
-<YYINITIAL>{WHITE}   { /* NO HACER NADA */              }
+<YYINITIAL>{WHITE}   {  }
 
 <YYINITIAL>.         { return new Token(Token.ERROR);   }
